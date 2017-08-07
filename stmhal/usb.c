@@ -279,6 +279,11 @@ STATIC mp_obj_t pyb_usb_mode(mp_uint_t n_args, const mp_obj_t *pos_args, mp_map_
             pid = USBD_PID_CDC_HID;
         }
         mode = USBD_MODE_CDC_HID;
+    } else if (strcmp(mode_str, "MSC+HID") == 0 || strcmp(mode_str, "HID+MSC") == 0) {
+        if (args[2].u_int == -1) {
+            pid = USBD_PID_MSC_HID;
+        }
+        mode = USBD_MODE_MSC_HID;
     } else if (strcmp(mode_str, "CDC") == 0 || strcmp(mode_str, "VCP") == 0) {
         if (args[2].u_int == -1) {
             pid = USBD_PID_CDC;
